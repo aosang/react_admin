@@ -6,3 +6,19 @@
   margin: 0;
   padding: 0;
 }
+
+/* 修复 Ant Design Menu SubMenu 父菜单项颜色问题 */
+/* 确保父菜单项文字始终为白色 */
+.ant-menu-inline .ant-menu-submenu-title,
+.ant-menu-inline .ant-menu-submenu-title:hover,
+.ant-menu-inline .ant-menu-submenu-open > .ant-menu-submenu-title,
+.ant-menu-inline .ant-menu-submenu-active > .ant-menu-submenu-title,
+.ant-menu-inline .ant-menu-submenu-selected > .ant-menu-submenu-title {
+  color: #fff !important;
+}
+
+/* 确保父菜单项图标也是白色 */
+.ant-menu-inline .ant-menu-submenu-title .ant-menu-item-icon,
+.ant-menu-inline .ant-menu-submenu-title .anticon {
+  color: #fff !important;
+}

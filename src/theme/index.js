@@ -42,8 +42,14 @@ export const menuTheme = {
   iconSize: 16,                      // 图标大小
   iconMarginInlineEnd: 10,           // 图标与文字间距
   
-  // 子菜单
-  subMenuItemBg: 'rgba(0, 0, 0, 0.02)',
+  // 子菜单相关 - 修复父菜单颜色问题的关键配置
+  subMenuItemBg: colors.primary,     // 子菜单背景色
+  groupTitleColor: colors.white,     // 分组标题颜色
+  popupBg: colors.primary,           // 弹出菜单背景
+  
+  // 关键：SubMenu 标题颜色（inline 模式下的父菜单项）
+  colorTextSubMenu: colors.white,         // SubMenu 标题默认颜色
+  colorBgSubMenuItemActive: colors.primary, // SubMenu 激活时背景色
   
   // 禁用状态
   itemDisabledColor: 'rgba(255, 255, 255, 0.25)',
@@ -59,7 +65,7 @@ export const buttonTheme = {
 export const antdTheme = {
   token: {
     // 全局 Token
-    colorPrimary: colors.primary,
+    // colorPrimary: colors.white,
     borderRadius: 8,
     colorBgContainer: colors.white,
   },

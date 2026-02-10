@@ -1,8 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom'
 import Layout from '../Layout'
 
-import Home from '@/pages/Home/Home'
-import User from '@/pages/User/User'
+import Table from '@/pages/Table/Table'
+import Card from '@/pages/Card/Card'
+import Menu from '@/pages/Menu/Menu'
+import Carousel from '@/pages/Carousel/Carousel'
 
 const router = createBrowserRouter([
   {
@@ -11,15 +13,23 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />  // 默认显示 Home 页面
+        element: <Table />  // 默认显示 Table 页面
       },
       {
-        path: 'home',
-        element: <Home />
+        path: 'Card',
+        element: <Card />
       },
       {
-        path: 'user',
-        element: <User />
+        path: 'Table',
+        element: <Table />
+      },
+      {
+        path: 'Menu',
+        element: <Menu />
+      }, 
+      {
+        path: 'Carousel',
+        element: <Carousel />
       }
     ]
   }
