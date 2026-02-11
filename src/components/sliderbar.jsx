@@ -1,9 +1,9 @@
 import { Layout, Menu, ConfigProvider, Button, Tabs } from 'antd'
-import { 
-  TableOutlined, 
-  CreditCardOutlined, 
-  MenuUnfoldOutlined, 
-  MenuFoldOutlined, 
+import {
+  TableOutlined,
+  CreditCardOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
   MenuOutlined,
   PictureOutlined
 } from '@ant-design/icons'
@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate, useLocation, Outlet } from 'react-router-dom'
 import antdTheme from '@/theme'
 
-const {Header, Footer, Content, Sider} = Layout
+const { Header, Footer, Content, Sider } = Layout
 
 const siderStyle = {
   backgroundColor: "#4b80f9",
@@ -110,6 +110,7 @@ const Slide = () => {
   ])
   const [activeTabKey, setActiveTabKey] = useState('Table')
 
+
   // 获取所有根级父菜单的 keys（用于手风琴效果）
   const rootSubmenuKeys = menuItem
     .filter(item => item.children && item.children.length > 0)
@@ -147,13 +148,14 @@ const Slide = () => {
   useEffect(() => {
     const currentPath = location.pathname.substring(1) || 'Table' // 去掉开头的 /，默认为 Table
     const result = findMenuByPath(menuItem, currentPath)
+    
     if (result) {
       setSelectedKeys([result.item.key])
       // 如果是子菜单，自动展开父菜单（仅在非折叠状态下）
       if (result.parentKey && !collapsed) {
         setOpenKeys([result.parentKey])
       }
-      
+
       // 更新标签页
       setActiveTabKey(currentPath)
       const existingTab = tabs.find(tab => tab.path === currentPath)
@@ -176,6 +178,8 @@ const Slide = () => {
       // 展开时，如果当前选中的是子菜单，恢复父菜单展开状态
       const currentPath = location.pathname.substring(1)
       const result = findMenuByPath(menuItem, currentPath)
+      console.log(result)
+      
       if (result && result.parentKey) {
         setOpenKeys([result.parentKey])
       }
@@ -188,7 +192,7 @@ const Slide = () => {
     if (clickedItem && clickedItem.path) {
       const path = clickedItem.path
       navigate(`/${path}`)
-      
+
       // 添加标签页（如果不存在）
       const existingTab = tabs.find(tab => tab.path === path)
       if (!existingTab) {
@@ -199,7 +203,7 @@ const Slide = () => {
         }])
       }
       setActiveTabKey(path)
-      
+
       // 如果点击的是一级菜单（不在任何父菜单下），关闭所有展开的父菜单
       const isTopLevelItem = menuItem.some(item => item.key === key && !item.children)
       if (isTopLevelItem) {
@@ -218,7 +222,7 @@ const Slide = () => {
   const handleTabRemove = (targetKey) => {
     const targetIndex = tabs.findIndex(tab => tab.key === targetKey)
     const newTabs = tabs.filter(tab => tab.key !== targetKey)
-    
+
     // 如果关闭的是当前激活的标签页
     if (targetKey === activeTabKey) {
       // 如果还有其他标签页，激活相邻的标签页
@@ -229,7 +233,7 @@ const Slide = () => {
         navigate(`/${newActiveTab.path}`)
       }
     }
-    
+
     setTabs(newTabs)
   }
 
@@ -263,14 +267,15 @@ const Slide = () => {
       theme={antdTheme}
     >
       <Layout>
-        <Sider 
+        <Sider
           trigger={null}
           collapsible
           collapsed={collapsed}
-          style={siderStyle}>
+          style={siderStyle}
+        >
           <div style={title}>Title</div>
-          <Menu 
-            mode="inline" 
+          <Menu
+            mode="inline"
             selectedKeys={selectedKeys}
             openKeys={collapsed ? [] : openKeys}
             onOpenChange={handleOpenChange}
@@ -281,10 +286,10 @@ const Slide = () => {
         </Sider>
         <Layout>
           <Header style={header}>
-            <Button 
-              type='text' 
-              icon={collapsed ? <MenuUnfoldOutlined style={collapsedIcon} /> : <MenuFoldOutlined style={collapsedIcon} />} 
-              onClick={() => setCollapsed(!collapsed)} 
+            <Button
+              type='text'
+              icon={collapsed ? <MenuUnfoldOutlined style={collapsedIcon} /> : <MenuFoldOutlined style={collapsedIcon} />}
+              onClick={() => setCollapsed(!collapsed)}
             />
           </Header>
           {/* 标签页导航 */}
